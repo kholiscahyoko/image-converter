@@ -1,0 +1,76 @@
+Code for python, flask server.
+add route "/" with GET method and return index.html
+add route "/jpgtowebp" with GET method and return jpgtowebp.html
+add route "/pngtowebp" with GET method and return pngtowebp.html
+add route "/bmptowebp" with GET method and return bmptowebp.html
+add route "/jpgtopdf" with GET method and return jpgtopdf.html
+add route "/pngtopdf" with GET method and return pngtopdf.html
+add route "/bmptopdf" with GET method and return bmptopdf.html
+
+Code for index.html file. create a div and add these 6 links as list in it with href= appropiate route from our falsk server.
+JPG to WEBP converter
+PNG to WEBP converter
+BMP to WEBP converter
+JPG to PDF converter
+PNG to PDF converter
+BMP to PDF converter
+
+Code for jpgtowebp.html file.
+Display input form, so user can select image from their computer.
+also add a "Convert to WEBP" button.
+onclick button, check if image is selected and image is jpg format and less than 5 MB
+if true then send POST request to route "api/jpgtowebp" with image as parameter.
+else show relevant error like select a image or image is not jpg format
+
+Code for pngtowebp.html file.
+Display input form, so user can select image from their computer.
+also add a "Convert to WEBP" button.
+onclick button, check if image is selected and image is jpg format and less than 5 MB
+if true then send POST request to route "api/pngtowebp" with image as parameter.
+else show relevant error like select a image or image is not png format
+
+Code for bmptowebp.html file.
+Display input form, so user can select image from their computer.
+also add a "Convert to WEBP" button.
+onclick button, check if image is selected and image is bmp format and less than 5 MB
+if true then send POST request to route "api/bmptowebp" with image as parameter.
+else show relevant error like select a image or image is not bmp format
+
+Code for jpgtopdf.html file.
+Display input form, so user can select image from their computer.
+also add a "Convert to PDF" button.
+onclick button, check if image is selected and image is jpg format and less than 5 MB
+if true then send POST request to route "api/jpgtopdf" with image as parameter.
+else show relevant error like select a image or image is not jpg format
+
+Code for pngtopdf.html file.
+Display input form, so user can select image from their computer.
+also add a "Convert to PDF" button.
+onclick button, check if image is selected and image is jpg format and less than 5 MB
+if true then send POST request to route "api/pngtopdf" with image as parameter.
+else show relevant error like select a image or image is not png format
+
+Code for bmptopdf.html file.
+Display input form, so user can select image from their computer.
+also add a "Convert to PDF" button.
+onclick button, check if image is selected and image is bmp format and less than 5 MB
+if true then send POST request to route "api/bmptopdf" with image as parameter.
+else show relevant error like select a image or image is not bmp format
+
+for flask server, create a route "api/jpgtowebp" with POST method.
+take the image from parameter and convert into WEBP. make response object with image as attachment and return it.
+
+for flask server, create a route "api/pngtowebp" with POST method.
+take the image from parameter and convert into WEBP. make response object with image as attachment and return it.
+
+for flask server, create a route "api/bmptowebp" with POST method.
+take the image from parameter and convert into WEBP. make response object with image as attachment and return it.
+
+for flask server, create a route "api/jpgtopdf" with POST method.
+take the image from parameter and convert into PDF. make response object with image as attachment and return it.
+
+for flask server, create a route "api/pngtopdf" with POST method.
+take the image from parameter and convert into PDF. make response object with image as attachment and return it.
+
+for flask server, create a route "api/bmptopdf" with POST method.
+take the image from parameter and convert into PDF. make response object with image as attachment and return it.

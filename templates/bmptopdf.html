@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMP to PDF</title>
+</head>
+<body>
+    <form>
+        <div>
+            <input type="file" id="bmpImage" accept="image/bmp"/>
+        </div>
+        <div>
+            <button id="convertToPdfBtn">Convert to PDF</button>
+        </div>
+    </form>
+    
+    <script>
+        document.getElementById("convertToPdfBtn").addEventListener("click", function(e) {
+            e.preventDefault();
+            let image = document.getElementById("bmpImage").files[0];
+            let imageName = image.name;
+            let imageSize = image.size;
+            let imageType = image.type;
+            if (image == null) {
+                alert("Please select an image");
+                return;
+            } else if (!imageType.includes("image/bmp")) {
+                alert("Selected file is not in BMP format");
+                return;
+            } else if (imageSize > 5000000) {
+                alert("Image size should be less than 5 MB");
+                return;
+            }
+            let formData = new FormData();
+            formData.append("image", image);
+            fetch("/api/bmptopdf", {
+                method: "POST",
+                body: formData
+            }).then(response =>{
+                if(response.ok){
+                    const disposition = response.headers.get('Content-Disposition');
+                    filename = disposition.split(/;(.+)/)[1].split(/=(.+)/)[1];
+                    if (filename.toLowerCase().startsWith("utf-8''"))
+                        filename = decodeURIComponent(filename.replace("utf-8''", ''));
+                    else
+                        filename = filename.replace(/['"]/g, '');
+                    console.log(filename);
+                    return response.blob();
+                }else{
+                    alert("failed to convert image")
+                }
+            }).then(blob=>{
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                console.log(filename);
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                alert("Image converted successfully!");
+            });
+        });
+    </script>
+</body>
+</html>
